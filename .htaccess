@@ -1,6 +1,6 @@
 Options +FollowSymLinks -MultiViews
 RewriteEngine On
-RewriteBase /snijesh/gitnew/PunyaSnijesh.github.io/
+RewriteBase /PunyaSnijesh.github.io/
 
 ErrorDocument 404 /notfound.php
 
