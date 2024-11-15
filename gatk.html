@@ -159,51 +159,132 @@ anaconda is given below.</p>
   <span class="command">bash Anaconda3-2019.03-Linux-x86_64.sh</span>
 </div></div>
 Once anaconda is installed, we need to install packages like Burrows-Wheeler Alignment Tool 
-(BWA), SA</p>			              
-				              
+(BWA), SAMtools, GATK, SnpEff, R and R libraries ggplot2 and gsalib. These tools can be 
+installed within anaconda using the following commands.
+</p>		
+<div class="terminal" id="terminal">
+  <button class="copy-button" onclick="copyCode()">Copy Code</button>
+  <div id="cont">
+  <span class="command">#https://anaconda.org/bioconda/bwa<br>
+conda install -c bioconda bwa</span><br>
+<span class="command">#https://anaconda.org/bioconda/gatk4<br>
+conda install -c bioconda gatk4</span><br>
+<span class="command">#https://anaconda.org/bioconda/samtools<br>
+conda install -c bioconda samtools</span><br>
+<span class="command">#https://anaconda.org/bioconda/snpeff<br>
+conda install -c bioconda snpeff</span><br>
+  <span class="command">bash Anaconda3-2019.03-Linux-x86_64.sh</span>
+</div></div>	              
+			<h6>Resource bundle and biological samples</h6>	 
+			<p>The resource bundle refers to a collection of reference files and known variant datasets that are 
+commonly used in genomic analysis. The GATK resource bundle is a curated set of high-quality 
+reference and annotation files provided by the Broad Institute to aid researchers in their genomic 
+analysis pipelines. The resource bundle includes Reference genome in FASTA format; Variant 
+calling resources such as dbSNP, HapMap, and 1000 Genomes Project variants; Annotation 
+resources that provide functional information about genomic elements which include information 
+about gene locations, transcripts, protein-coding regions, and other genomic features; Index files 
+that are necessary for efficient data retrieval and querying. These index files enable quick access 
+to specific genomic regions, improving the performance of read alignment and variant calling 
+algorithms. The GATK resource bundle is regularly updated and maintained by the Broad Institute 
+to ensure the availability of the most up-to-date and relevant genomic references and annotations. 
+Researchers can download the resource bundle and incorporate it into their analysis pipelines, 
+simplifying the process of obtaining and using essential genomic data. By providing a 
+comprehensive set of reference and annotation files, the GATK resource bundle streamlines the 
+setup and execution of genomic analysis workflows. It ensures consistent and standardized analysis across different projects and facilitates reproducibility and comparability of results within 
+the genomics community. The resource bundle available at broad repository can be accessed using 
+following link <a style="font:italic; color:blue;" href="https://console.cloud.google.com/storage/browser/genomics-public-data">https://console.cloud.google.com/storage/browser/genomics-public-data</a>. The 
+downloaded files were kept under the directory ‘bundle’.</p><P>
+The European Nucleotide Archive (ENA)16 and Sequence Read Archive (SRA)17 are key databases 
+for storing and sharing biological data, particularly high-throughput sequencing and omics data. 
+ENA serves as a comprehensive repository for nucleotide sequences, accepting data from various 
+sequencing technologies and providing a platform for archiving, retrieval, and analysis. It 
+encompasses not only sequence data but also metadata, annotations, and associated information. 
+On the other hand, SRA, maintained by the National Center for Biotechnology Information 
+(NCBI)17, specializes in raw sequencing data storage and access, including short and long reads 
+from next-genneration sequencing platforms. Researchers can submit their data to SRA for public 
+availability, promoting data sharing and facilitating its reuse for diverse research purposes. In the 
+current study, we used a trio dataset from ENA database. We used wget command to download the 
+samples. The downloaded samples were kept under directory name ‘data’.</p>   
+<div class="terminal" id="terminal">
+  <button class="copy-button" onclick="copyCode()">Copy Code</button>
+  <div id="cont">
+  <span class="command">wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR130/006/SRR1301246/SRR1301246_1.fastq.gz/span><br>
+<span class="command">wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR130/006/SRR1301246/SRR1301246_2.fastq.gz
+</span><br>
+<span class="command">wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR130/007/SRR1301249/SRR1301249_1.fastq.gz
+</span><br>
+<span class="command">wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR130/007/SRR1301249/SRR1301249_2.fastq.gz
+</span><br>
+ <span class="command">wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR130/008/SRR1301248/SRR1301248_1.fastq.gz</span><br>
+ <span class="command">wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR130/008/SRR1301248/SRR1301248_2.fastq.gz
+</span>
+</div></div>
+<p>In this protocol series, we use terms as mentioned in the table below and the demo of running the 
+script will be shown only in one sample. The usage of certain attributes with their path are given 
+in the Table 1. The overall workflow described in this protocol is shown in figure 1.
+</p><p><b>Table 1</b>. The usage of attributes with their path</p>
+<div class="w-100">
+	<table class="table table-bordered ">
+		<thead><tr><th>Usage</th><th>Path</th></tr></thead>
+		<tbody>
+			<tr>
+				<td>$REFERENCE</td>
+				<td>bundle/ Homo_sapiens_assembly38.fasta</td>
+			</tr>
+			<tr>
+				<td>$MillsIndels</td>
+				<td>bundle/ Mills_and_1000G_gold_standard.indels.hg38.vcf.gz</td>
+			</tr>
+			<tr>
+				<td>$DBSNP</td>
+				<td>bundle/ dbsnp_138.hg38.vcf.gz</td>
+			</tr>
+			<tr>
+				<td>$G1000</td>
+				<td>bundle/ 1000G_phase1.snps.high_confidence.hg38.vcf.gz</td>
+			</tr>
+			<tr>
+				<td>$hapmap</td>
+				<td>bundle/hapmap_3.3.hg38.vcf.gz</td>
+			</tr>
+			<tr>
+				<td>$omni</td>
+				<td>bundle/1000G_omni2.5.hg38.vcf.gz</td>
+			</tr>
+			<tr>
+				<td>$omni</td>
+				<td>bundle/af-only-gnomad.hg38.vcf.gz</td>
+			</tr>
+			
+		</tbody>
+	</table>
+</div>	    <div></div> 
+	          <div class="w-100">
+	          	<img class="" src="images/gatk.png"></a>
+	          </div>
+<p style><b>Figure 1</b>. The overall workflow used in this protocol</p>
+<h5>Quality control</h5>
+<p>Quality control (QC) involves assessing the quality of sequencing data to identify and remove low-quality reads. The goal of QC is to minimize noise and errors in the downstream analysis and 
+improve the accuracy and reliability of variant calls. The first step in QC is to assess the quality of 
+the raw sequencing data. This involves examining the sequencing metrics, such as read length, 
+sequencing depth, and base quality scores, to identify any issues that may affect the quality of the 
+data. Common quality issues include low read depth, adapters, high error rates, and base quality 
+score compression. These issues can result in false-positive variant calls, which can lead to 
+erroneous conclusions. The next step is to remove low-quality reads and trim adapters and low-quality bases from the sequencing data. This step is critical for improving the accuracy and 
+reliability of variant calls. Several tools are available for quality control, including FastQC18
+, 
+Trimmomatic19, TrimGalore20,21 and Cutadapt<span class="badge">22</span>, among others. These tools help to remove low-quality reads and trim adapters and low-quality bases from the sequencing data. In this chapter, we 
+will use FastQC12 for quality check and TrimGalore for removal of adapters and low-quality reads 
+in the sample. The following scripts are used to run QC and removal of noise in the sample.</p>
 				            </div>
 	    						</div>
 	    					</div>
 	          <div class="w-100"></div>
-	          <div class="col-md-3">
-	            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-	          </div>
-	          <div class="col-md-3">
-	            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-	          </div>
-	          <div class="col-md-3">
-	            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-	          </div>
-	          <div class="col-md-3">
-	            <p><span>Website</span> <a href="#">yoursite.com</a></p>
-	          </div>
-	        </div>
-	        <div class="row block-9">
-	          <div class="col-md-6 order-md-last pr-md-5">
-	            <form action="#">
-	              <div class="form-group">
-	                <input type="text" class="form-control" placeholder="Your Name">
-	              </div>
-	              <div class="form-group">
-	                <input type="text" class="form-control" placeholder="Your Email">
-	              </div>
-	              <div class="form-group">
-	                <input type="text" class="form-control" placeholder="Subject">
-	              </div>
-	              <div class="form-group">
-	                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-	              </div>
-	              <div class="form-group">
-	                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-	              </div>
-	            </form>
 	          
-	          </div>
-
-	          <div class="col-md-6">
-	          	<div id="map"></div>
-	          </div>
+	          
+	          
 	        </div>
+	        
 	      </div>
 	    </section>
 
