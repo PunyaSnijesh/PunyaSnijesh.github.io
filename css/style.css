@@ -7372,7 +7372,7 @@ h1, h2, h3, h4, h5,
       font-size: 16px;
       font-weight: 700; }
       #colorlib-aside #colorlib-main-menu ul li a {
-        color: rgba(0, 0, 0, 0.4);
+        color: #fff;
         text-decoration: none;
         position: relative;
         padding: 10px 0;
@@ -7403,7 +7403,7 @@ h1, h2, h3, h4, h5,
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         #colorlib-aside #colorlib-main-menu ul li a:hover {
           text-decoration: none;
-          color: black; }
+          color: #09f2eb; }
           #colorlib-aside #colorlib-main-menu ul li a:hover:after {
             visibility: visible;
             -webkit-transform: scaleX(1);
@@ -7412,7 +7412,7 @@ h1, h2, h3, h4, h5,
             -o-transform: scaleX(1);
             transform: scaleX(1); }
       #colorlib-aside #colorlib-main-menu ul li.colorlib-active a {
-        color: #000000; }
+        color: #09f2eb; }
         #colorlib-aside #colorlib-main-menu ul li.colorlib-active a:after {
           visibility: visible;
           -webkit-transform: scaleX(1);
@@ -7427,7 +7427,7 @@ h1, h2, h3, h4, h5,
     left: 1.5em;
     font-size: 14px;
     font-weight: 400;
-    color: rgba(0, 0, 0, 0.6);
+    color: #c8c8db;
     padding: 0 20px; }
     #colorlib-aside .colorlib-footer span {
       display: block; }
@@ -7440,7 +7440,7 @@ h1, h2, h3, h4, h5,
         display: inline;
         list-style: none; }
         #colorlib-aside .colorlib-footer ul li a {
-          color: rgba(0, 0, 0, 0.7);
+          color: #09f2eb;
           padding: 4px; }
           #colorlib-aside .colorlib-footer ul li a:hover, #colorlib-aside .colorlib-footer ul li a:active, #colorlib-aside .colorlib-footer ul li a:focus {
             text-decoration: none;
@@ -8574,3 +8574,5 @@ textarea.form-control {
     .copy-button:hover {
       background-color: #3da18b;
     }
+    .bg-black{background-color:#000!important;}
+    .ul-clr{color:#fff!important;}
