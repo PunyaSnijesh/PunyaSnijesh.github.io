@@ -7298,7 +7298,7 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #f05d23; }
+  color: #000; }
   a:hover, a:focus {
     text-decoration: none;
     color: #f05d23;
@@ -7915,7 +7915,7 @@ h1, h2, h3, h4, h5,
     -ms-border-radius: 3px;
     border-radius: 3px; }
     .blog-entry .img.img-2 {
-      height: 330px; }
+      height: 205px; }
   .blog-entry .text {
     position: relative;
     z-index: 0; }
